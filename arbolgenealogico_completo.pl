@@ -1,4 +1,4 @@
-%ARBOLGENEALOGICO
+%ARBOL GENEALOGICO
 
 %VARONES
 %varon(x): x es varon
@@ -71,3 +71,52 @@ tia(X,Y):-mujer(X),((padre(P,Y),hermana(X,P);madre(M,Y),hermana(X,M));(madre(X,M
 primo(X,Y):-(padre(Z,Y);madre(Z,X)),(padre(Z1,Y);madre(Z1,Y)),(hermana(Z,Z1);hermana(Z,Z1)),varon(X),diferente(X,Y).
 %prima(X,Y): X Es prima de Y
 prima(X,Y):-(padre(Z,Y);madre(Z,X)),(padre(Z1,Y);madre(Z1,Y)),(hermana(Z,Z1);hermana(Z,Z1)),mujer(X),diferente(X,Y).
+
+
+%padrastro: X ES PADRASTRO DE Y
+padrastro(X,Y):-not(hijo(Y,X);hija(Y,X)),padre(X,H),(madre(M,Y),madre(M,H)),varon(X),!.
+
+%madrastra
+madrastra(X,Y):-not(hijo(Y,X);hija(Y,X)),madre(X,H),(padre(P,Y),padre(P,H)),mujer(X),!.
+
+
+
+%hermanastro(x,y):x es hermanastro de y
+hermanastro(X,Y):-(((padre(P,X),padre(P,Y)),madre(M,X),madre(A,Y),not(M=A));(madre(M2,X),madre(M2,Y)),padre(P2,X),padre(A2,Y),not(P2=A2)),varon(X).
+
+%hermanastra
+hermanastra(X,Y):-(((padre(P,X),padre(P,Y)),madre(M,X),madre(A,Y),not(M=A));(madre(M2,X),madre(M2,Y)),padre(P2,X),padre(A2,Y),not(P2=A2)),mujer(X).
+
+% ANCESTRO CASO BASE
+ancestro(X,Y):-padre(X,Y).
+ancestro(X,Y):-madre(X,Y).
+ancestro(X,Y):-padre(X,Z),ancestro(Z,Y).
+ancestro(X,Y):-madre(X,Z),ancestro(Z,Y).
+%CASO RECUERRENTE
+ancestro(X,Y):-(padre(X,Z);madre(X,Z)),ancestro(Z,Y).
+
+%DESCENDIENTE
+descendiente(X,Y):-ancestro(Y,X).
+
+%hermanastra(X,Y):-(padre(Z,X);madre(Z,X)),(padre(Z,Y);madre(Z,Y)),not(X=Y),not(varon(Y)).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
