@@ -6,6 +6,8 @@ varon(guillermo).
 varon(roberto).
 varon(javier).
 varon(carlos).
+varon(rodriguito).
+varon(rony).
 
 %MUJERES
 %mujer(x): x es mujer
@@ -13,6 +15,7 @@ mujer(grethel).
 mujer(elvia).
 mujer(maria).
 mujer(francis).
+mujer(luisa).
 
 %relacion de padre
 %padre(x,y): x es padre de y
@@ -20,6 +23,7 @@ padre(guillermo,javier).
 padre(guillermo,grethel).
 padre(roberto,maria).
 padre(roberto,carlos).
+padre(javier,rony).
 
 %relacion de madre
 %madre(x,y): x es madre de y
@@ -28,6 +32,8 @@ madre(maria,javier).
 madre(elvia,maria).
 madre(elvia,carlos).
 madre(francis,guillermo).
+madre(grethel,rodriguito).
+madre(grethel,luisa).
 
 %REGLAS
 diferente(X,Y):-not(X=Y).

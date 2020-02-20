@@ -1,4 +1,4 @@
-%ARBOL GENEALOGICO
+%ARBOLGENEALOGICO
 
 %VARONES
 %varon(x): x es varon
