@@ -10,6 +10,9 @@ hombre(leopoldocordova).
 hombre(elfito).
 hombre(ramiromiranda).
 
+hombre(gabrielcordova).
+hombre(carloscordova).
+
 mujer(elviacordova).
 mujer(marilucordova).
 mujer(celestemiranda).
@@ -23,11 +26,17 @@ mujer(lichacordova).
 mujer(gladyscordova).
 mujer(blancalopez).
 
+mujer(marisolmiranda).
+mujer(carlamiranda).
+
 pareja(alejandrolopez,marlenymiranda).
 pareja(elfito,celestemiranda).
 pareja(maynormiranda,gladyscordova).
 pareja(abellopez,blancalopez).
 pareja(ramiromiranda,carlotamiranda).
+
+pareja(gabrielcordova,marisolmiranda).
+pareja(carloscordova,carlamiranda).
 
 progenitor(alejandrolopez,alejandrocordova).
 progenitor(alejandrolopez,davidcordova).
@@ -57,8 +66,16 @@ progenitor(carlotamiranda,maynormiranda).
 progenitor(carlotamiranda,celestemiranda).
 progenitor(carlotamiranda,marlenymiranda).
 
+progenitor(gabrielcordova,carlotamiranda).
+progenitor(marisolmiranda,carlotamiranda).
+progenitor(carloscordova,leopoldocordova).
+progenitor(carlamiranda,leopoldocordova).
+
 padre(X,Y):-hombre(X),progenitor(X,Y).
 madre(X,Y):-mujer(X),progenitor(X,Y).
+
+
+
 
 hermanos(X,Y):-progenitor(Z,X),progenitor(Z,Y), not(X==Y).
 hermano(X,Y):-hombre(X),hermanos(X,Y).
@@ -80,3 +97,8 @@ tio(X,Y):-progenitor(Z,Y),(hermano(X,Z);cunado(X,Z)).
 tia(X,Y):-progenitor(Z,Y),(hermana(X,Z);cunada(X,Z)).
 primo(X,Y):-progenitor(Z,X),progenitor(W,Y),hermanos(Z,W),hombre(X).
 prima(X,Y):-progenitor(Z,X),progenitor(W,Y),hermanos(Z,W),mujer(X).
+
+bisabuela(X,Y):-madre(X,Z),abuelo(Z,Y).
+bisabuela(X,Y):-madre(X,Z),abuela(Z,Y).
+bisabuelo(X,Y):-padre(X,Z),abuelo(Z,Y).
+bisabuelo(X,Y):-padre(X,Z),abuela(Z,Y).
